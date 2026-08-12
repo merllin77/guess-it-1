@@ -1,0 +1,20 @@
+{
+  "project_name": "unknown",
+  "project_type": "unknown",
+  "current_topic": "unknown",
+  "current_problem": "unknown",
+  "current_goal": "unknown",
+  "failed_attempts": 0,
+  "last_help_mode": "none",
+  "code_allowed": false,
+  "project_topic_levels": {
+    "project_setup": 5,
+    "core_logic": 4,
+    "debugging": 4,
+    "testing": 3
+  },
+  "known_project_tools": [],
+  "weak_project_tools": [],
+  "recent_session_summary": "",
+  "next_step": ""
+}
