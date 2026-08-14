@@ -21,6 +21,7 @@
     "git": 5,
     "docker": 4,
     "algorithms": 5,
+    "statistics": 4.5,
     "data_structures": 4.3,
     "html": 4,
     "css": 3,
@@ -127,6 +128,9 @@
     "A struct can keep selected paths, their assigned-ant counts, and their score coherent across package boundaries when its type and needed fields are exported.",
     "A solver must receive and obey the same per-path allocation that was used to score a path selection; otherwise its independent launch choices can lose the optimal makespan."
     ,"A stable sort preserves DFS order for paths of equal length while allowing a deterministic short-path-first selector traversal."
+    ,"Standard deviation represents data spread in the same units as the original values and can guide a statistical prediction interval."
+    ,"Mean requires only sum divided by count; standard deviation additionally squares distances from that mean, averages them, and takes the square root."
+    ,"Prediction-range quality is evaluated by a trade-off: correct coverage earns points, but wider intervals earn fewer points, so Final Result is more meaningful than accuracy percentage alone."
     ,"A per-path slice of ant IDs records assignment, while a separate per-path index identifies the next assigned ant to launch."
     ,"A recursive include branch returns after all deeper combinations are explored; only then does slice/map backtracking undo the current choice before the unconditional exclude branch runs."
   ],
@@ -134,7 +138,8 @@
     "style": "balanced_socratic",
     "code_policy": "Global hard rule: never provide code, code snippets, exact expressions, or syntax fragments in any project unless the user explicitly says 'give me code'. 'Help me' always means Socratic questions or conceptual hints only",
     "preferred_language": "english_with_possible_greek",
-    "mentor_style": "step_by_step_no_code_until_needed"
+    "mentor_style": "step_by_step_no_code_until_needed",
+    "memory_update_preference": "Update memory only for material learning milestones, design decisions, debugging outcomes, or explicit session-close requests; avoid per-message updates."
   },
   "notes": [
     "User is learning coding at Zone01.",
@@ -156,5 +161,22 @@
     "On 2026-08-09, learner implemented normalized per-turn tunnel tracking and corrected the earlier false direct-path exception. They introduced PathSelection to preserve paths, allocation, and score together from selector to solver; the 20-ant direct-plus-long-route test now achieves 11 turns. They began deterministic tie-breaking: lower score wins, then fewer selected paths. Next: canonical comparison for complete ties, then testing and cleanup.",
     "On 2026-08-09, learner retained the current DFS plus compatible-subset architecture after comparing it with residual/max-flow complexity. They added stable path-length ordering, changed PathSelection to carry selected paths, per-path ant IDs, and turns, and changed the solver to launch assigned IDs per path. The official example05 map reaches the reference minimum of 8 turns with a different but valid ID transcript. At future session close, update socage only when explicitly requested; never modify Go code without explicit permission."
     ,"On 2026-08-12, learner completed a short-answer Lem-in review with an objective score of 16.5/20. Strong in the full program pipeline, parser validation, undirected adjacency storage, DFS/backtracking purpose, compatible paths, traffic-based allocation, and collision prevention. Needs reinforcement on the off-by-one in path completion turns and on distinguishing selector terminal handling from FindPaths no-path error handling."
+    ,"For Guess it 1, learner built a float64 streaming predictor using average ± population standard deviation, rounded outward for integer output, with a ±50 first-input fallback. Docker tester works; Dataset 2 is the next diagnostic focus after an extremely low 0.18% coverage result."
+    ,"For Guess it 1, Dataset 2 transcript inspection showed values escaping the mean plus-or-minus standard-deviation interval both above and below; the next step is testing a justified wider policy rather than a one-direction trend adjustment."
+    ,"For Guess it 1, learner chose a dynamic wider interval: average remains the prediction centre, while two standard deviations determine its distance to each bound."
+    ,"For Guess it 1, learner diagnosed a Docker tester interoperability bug: Go's default float output switches to scientific notation for huge bounds, while the tester's parseInt reads such strings only up to the exponent marker. Output must use ordinary integer decimal formatting."
+    ,"For Guess it 1, learner distinguished a rounded float value from an integer output value and corrected the prediction-output design by converting outward-rounded bounds to integers before printing."
+    ,"For Guess it 1, learner verified that high coverage can still yield a poor score: after fixing output formatting, two standard deviations gave 99.02% coverage but only 214 points because rare huge outliers made the interval too wide for the scoring formula."
+    ,"For Guess it 1, learner chose an outlier-resistant direction: isolated extreme inputs should not permanently widen predictions because the data returns to its ordinary range afterward."
+    ,"For Guess it 1, learner completed a simple two-sided outlier filter based on the difference from the last accepted value: outliers are excluded from statistical history while normal values continue to update it."
+    ,"For Guess it 1, the simple outlier filter was rebuilt and beat the comparison guesser on Test Data 1, Test Data 2, and Test Data 3. Dataset 4 exposed a distinct issue: gradual drift across a wide total range makes all-history statistics too broad, so a recent window is the next design direction."
+    ,"For Guess it 1, learner chose a five-value recent window as the first approach to follow gradual drift while retaining the abrupt-outlier filter."
+    ,"For Guess it 1, learner implemented a five-value recent statistics window through a shared prediction helper; average and standard deviation receive the same window slice. The Go project compiles under go test ./...."
+    ,"For Guess it 1, the combined five-value recent-window and abrupt-outlier-filter predictor beats the comparison guesser by Final Result on all five tester datasets. Learner needs to keep Final Result, rather than coverage alone, as the optimization target."
+    ,"For Guess it 1, learner diagnosed a recent-window slice panic: window-size conditions and slice offsets must use the same size; changing only one can produce a negative start index during warm-up."
+    ,"For Guess it 1, window-size tuning showed that 3 reduced coverage while 8 improved coverage with only a small score reduction; next controlled experiment is window size 10 with multiplier 1.75 and threshold 1000 unchanged."
+    ,"For Guess it 1, learner reports that a ten-value recent window performs better than the eight-value candidate; window ten is the current balanced choice pending exact score comparison."
+    ,"For Guess it 1, window 10 is a strong score candidate, while learner reports window 15 reaches about 90 percent coverage. Final selection should compare exact score loss against the meaningful coverage gain; multiplier is 1.75 and threshold is 1000."
+    ,"On 2026-08-14, learner completed a full Guess it 1 tuning session: they fixed scientific-notation interoperability with the Docker tester, implemented abrupt-outlier filtering and recent-window statistics, and beat Big-Range by Final Result on all five datasets. Next learning step is evidence-based selection between window 10 and window 15."
   ]
 }

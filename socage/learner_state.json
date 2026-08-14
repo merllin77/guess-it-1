@@ -1,11 +1,11 @@
 {
-  "project_name": "unknown",
-  "project_type": "unknown",
-  "current_topic": "unknown",
-  "current_problem": "unknown",
-  "current_goal": "unknown",
+  "project_name": "guess-it-1",
+  "project_type": "streaming statistical prediction CLI",
+  "current_topic": "using running statistics to predict a next-value range",
+  "current_problem": "select the final recent-window size from the 10-versus-15 benchmark trade-off",
+  "current_goal": "build and test a Go program that prints a useful range after each input",
   "failed_attempts": 0,
-  "last_help_mode": "none",
+  "last_help_mode": "code-flow review; partial code allowed if explicitly requested",
   "code_allowed": false,
   "project_topic_levels": {
     "project_setup": 5,
@@ -15,6 +15,6 @@
   },
   "known_project_tools": [],
   "weak_project_tools": [],
-  "recent_session_summary": "",
-  "next_step": ""
+  "recent_session_summary": "Session completed a streaming-predictor refinement cycle. The learner implemented an abrupt-outlier filter, corrected scientific-notation output for the tester, added a recent statistics window, and beat Big-Range by Final Result on all five datasets. With multiplier 1.75 and threshold 1,000, window 15 reaches about 90% coverage; window 10 remains the strong-score comparison point.",
+  "next_step": "At the next session, record exact Final Result and Correct Guesses for windows 10 and 15 across all five tests, then select the preferred score-coverage balance."
 }
