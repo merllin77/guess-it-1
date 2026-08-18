@@ -67,4 +67,9 @@ func main() {
 		// 	calculateRange(recentUserInput, 10)
 		// }
 	}
+
+	// Check if the scanner has completed succesfully
+	if err := scanner.Err(); err != nil {
+		fmt.Fprintln(os.Stderr, err)
+	}
 }
