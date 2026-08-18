@@ -216,6 +216,48 @@ Clarification: Its Correct Guesses percentage remains below the wide-range basel
 
 Next step: Gather exact results before considering any coverage-oriented change.
 
+### 2026-08-15 — Benchmark metric and random-sample clarification
+
+Summary: Confirmed from the supplied tester that Final Result is the formal optimization target. A correct prediction earns points inversely related to its printed interval width, so Correct Guesses percentage is diagnostic rather than the deciding metric.
+
+Testing note: Each Test Data button randomly selects one of five sample files. Within one displayed Student-versus-AI run, both programs receive the same sample, so that head-to-head comparison is valid. Scores from separate button clicks may use different samples and must not be compared directly.
+
+Observed Data 1 results: Student at about 91.9% coverage and 93,388 Final Result lost to median at about 10.8% coverage and 98,404. This shows the current 15-value, 1.75-standard-deviation policy remains too wide for that sample.
+
+Next step: Compare Student and each reference program only within the same run, then investigate a narrower policy for Data 1 without judging it by coverage alone.
+
+### 2026-08-15 — Audit dataset scope
+
+Decision: The exercise audit evaluates only Test Data 1, Test Data 2, and Test Data 3. Data 4 and 5 may remain useful exploratory checks, but they must not decide the final tuning choice.
+
+Next step: With the 15-value window fixed, test the 1.5 multiplier across Data 1–3 and judge the experiment by Final Result.
+
+### 2026-08-15 — Data 1 multiplier 1.5 result
+
+Benchmark: With window 15 and threshold 1,000 unchanged, reducing the multiplier from 1.75 to 1.5 raised the observed Student Final Result on Data 1 from about 93,000 to about 98,200 while coverage fell from about 92% to about 83%. In same-run comparisons, Student remained below average (98,246 versus 100,640) and median (98,198 versus 101,835).
+
+Interpretation: Narrowing the interval improved the primary metric, confirming that the former 1.75 policy was too wide for these Data 1 samples. The baseline still wins, so test one smaller multiplier next; do not change the window or outlier threshold simultaneously. Because each click randomly selects one of five samples, repeat comparisons before treating a small score gap as conclusive.
+
+Next step: Keep window 15 and threshold 1,000; test multiplier 1.4 on audit Data 1–3.
+
+### 2026-08-15 — Data 1 multiplier 1.2 result
+
+Benchmark: With window 15 and threshold 1,000 unchanged, multiplier 1.2 reached 99,917 Final Result at 68.3% coverage against average's 100,640 at 2.25%. The remaining gap is 723 points.
+
+Median comparison on another same-run Data 1 sample: Student scored 99,826 at 68.08%, while median scored 102,273 at 11.21%, a 2,447-point gap.
+
+Audit results against median with the same 1.2 policy: Data 2 Student 99,839 at 67.42% versus median 100,229 at 10.98% (390-point gap); Data 3 Student 99,054 at 67.31% versus median 102,930 at 11.28% (3,876-point gap).
+
+Interpretation: Reducing the multiplier continued to improve the observed Data 1 score and substantially narrowed ranges. Before decreasing it again, check median on Data 1 and the audit Data 2 and 3 results so Data 1 optimization does not regress the complete audit scope.
+
+Next step: Test multiplier 1.1 with window 15 and threshold 1,000 across audit Data 1–3. Compare only Final Result within same-run Student-versus-reference results; keep 1.2 if the smaller multiplier does not improve the overall audit evidence.
+
+### 2026-08-15 — Evidence that 1.1 is below the Data 1 optimum
+
+Benchmark: At multiplier 1.1, Student scored 99,633 at 62.41% on a Data 1 sample against median's 102,273 at 11.21%. The identical median score shows this was the same sample as the earlier 1.2 median comparison, where Student scored 99,826. Thus lowering 1.2 to 1.1 reduced Student's Final Result by 193 on the same data.
+
+Decision: Do not lower directly to 1.0. Keep 1.2 as the current best evidenced Data 1 multiplier. If further tuning is wanted, test the midpoint 1.15, with window 15 and threshold 1,000 unchanged, and judge it against the same fixed samples.
+
 ### 2026-08-14 — Three-value window slice panic fixed
 
 Summary: While testing a three-value recent window, learner got a slice-bounds panic on the fourth accepted value. Cause: the length check used three but the recent-slice start still subtracted five, producing index -1. Learner found the mismatch and corrected it.

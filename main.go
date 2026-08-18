@@ -42,7 +42,7 @@ func main() {
 		if numbersLen >= 1 {
 			deviation := num - userInput[numbersLen-1]
 			if (int(deviation) >= 1000 && int(deviation) >= -1000) || (int(deviation) <= 1000 && int(deviation) <= -1000) {
-				// userInput = userInput // Do nothing
+				// userInput = userInput // Do nothing (skip if a random with big range difference value found)
 			} else {
 				userInput = append(userInput, num) // save all the user input
 			}
@@ -54,16 +54,17 @@ func main() {
 		}
 
 		numbersLen = len(userInput) // length of userInput
+		calculateRange(userInput, numbersLen)
 
-		// Calculation for the FIRST 15 numbers
-		if numbersLen <= 15 {
-			calculateRange(userInput, numbersLen)
-		}
+		// // Calculation for the FIRST 10 numbers
+		// if numbersLen <= 10 {
+		// 	calculateRange(userInput, numbersLen)
+		// }
 
-		// Calculation for the LAST 15 numbers
-		if numbersLen > 15 {
-			recentUserInput := userInput[len(userInput)-15:]
-			calculateRange(recentUserInput, 15)
-		}
+		// // Calculation for the LAST 10 numbers
+		// if numbersLen > 10 {
+		// 	recentUserInput := userInput[len(userInput)-10:]
+		// 	calculateRange(recentUserInput, 10)
+		// }
 	}
 }

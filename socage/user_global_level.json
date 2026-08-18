@@ -1,7 +1,7 @@
 {
   "user_id": "ktallaris",
-  "global_level": 4.9,
-  "last_updated": "2026-08-12",
+  "global_level": 5,
+  "last_updated": "2026-08-15",
   "topic_levels": {
     "go_basics": 5,
     "go_pointers": 4,
@@ -21,13 +21,13 @@
     "git": 5,
     "docker": 4,
     "algorithms": 5,
-    "statistics": 4.5,
+    "statistics": 4.6,
     "data_structures": 4.3,
     "html": 4,
     "css": 3,
     "javascript": 3,
-    "testing": 3.1,
-    "debugging": 4.4
+    "testing": 3.3,
+    "debugging": 4.5
   },
   "known_tools": [
     "os.Args",
@@ -178,5 +178,6 @@
     ,"For Guess it 1, learner reports that a ten-value recent window performs better than the eight-value candidate; window ten is the current balanced choice pending exact score comparison."
     ,"For Guess it 1, window 10 is a strong score candidate, while learner reports window 15 reaches about 90 percent coverage. Final selection should compare exact score loss against the meaningful coverage gain; multiplier is 1.75 and threshold is 1000."
     ,"On 2026-08-14, learner completed a full Guess it 1 tuning session: they fixed scientific-notation interoperability with the Docker tester, implemented abrupt-outlier filtering and recent-window statistics, and beat Big-Range by Final Result on all five datasets. Next learning step is evidence-based selection between window 10 and window 15."
+    ,"On 2026-08-15, learner used controlled tuning for Guess it 1: they identified Final Result as the primary objective, recognised the tester's random sample selection, and used matching reference scores to compare multipliers on the same sample. On fixed Data 1 evidence, multiplier 1.2 outperformed 1.1 with window 15 and threshold 1,000."
   ]
 }
