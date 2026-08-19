@@ -1,20 +1,20 @@
 {
   "project_name": "guess-it-1",
   "project_type": "streaming statistical prediction CLI",
-  "current_topic": "using running statistics to predict a next-value range",
-  "current_problem": "the 15-value policy peaks near multiplier 1.2 on a fixed Data 1 sample, while its best setting across audit Data 1 through 3 needs consolidation",
-  "current_goal": "build and tune a Go program that prints a useful range after each input for audit Data 1 through 3",
+  "current_topic": "completed: streaming statistical next-value prediction",
+    "current_problem": "none; project closed",
+    "current_goal": "completed Guess-it-1 audit-focused predictor",
   "failed_attempts": 0,
-  "last_help_mode": "code-flow review; partial code allowed if explicitly requested",
+    "last_help_mode": "Socratic code-flow review and benchmark interpretation",
   "code_allowed": false,
   "project_topic_levels": {
     "project_setup": 5,
-    "core_logic": 4,
-    "debugging": 4,
-    "testing": 3
+        "core_logic": 4.5,
+        "debugging": 4.5,
+        "testing": 3.7
   },
   "known_project_tools": [],
   "weak_project_tools": [],
-  "recent_session_summary": "Session conclusion: audit scope is Data 1 through 3 and Final Result is the formal tuning metric. The tester randomly selects one of five samples per click, but the Student and reference comparison shown together is fair. With window 15 and threshold 1,000, the multiplier was narrowed from 1.75 to 1.2, raising observed Data 1 scores to about 99,800. On an identical Data 1 sample, 1.2 scored 99,826 while 1.1 scored 99,633, so 1.1 is worse there. At 1.2, Student was close to median on Data 2 but remained behind on Data 1 and 3.",
-  "next_step": "Resume by retaining window 15, threshold 1,000, and multiplier 1.2. If more tuning is desired, test only multiplier 1.15 against the same fixed audit Data 1–3 samples; decide from Final Result, not Correct Guesses percentage."
+    "recent_session_summary": "Project complete. The final predictor calculates average and population standard deviation from accepted history, rejects abrupt differences of at least 1,000 from the last accepted value, uses multiplier 1.58, and prints one outward-rounded integer range per input. `calculateRange` returns bounds so main can safely include an accepted current value in the final interval without changing history. Across five fixed samples, the current binary beat the local nic reference on average for audit Data 1, Data 2, and Data 3. The learner understood prediction timing, the role of numAccepted, and why nic's narrow point predictions win only on chance repeats.",
+    "next_step": "No active project work. Optional future exploration: detect proven periodic patterns (such as Data 8) in a separate raw-history mode without weakening the completed Data 1–3 baseline."
 }
