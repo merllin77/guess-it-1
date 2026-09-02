@@ -28,7 +28,7 @@ func main() {
 	for scanner.Scan() {
 		line := strings.TrimSpace(scanner.Text())
 
-		if line == "" { // Bad input
+		if line == "" { // Wrong input
 			fmt.Println("Input Error: Empty value is not accepted")
 			return
 		}
