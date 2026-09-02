@@ -29,7 +29,7 @@ func main() {
 		line := strings.TrimSpace(scanner.Text())
 
 		if line == "" { // Bad input
-			fmt.Println("Wrong Input")
+			fmt.Println("Input Error: Empty value is not accepted")
 			return
 		}
 
