@@ -7,10 +7,11 @@ A Go command-line program that reads numbers continuously from standard input an
 The program keeps accepted input values and calculates a range centred on their average.
 
 - With one accepted value, it uses a safe range of 50 below to 50 above that value.
-- Afterwards, the range is the average plus or minus 1.75 standard deviations.
+- Afterwards, the range is the average plus or minus 1.58 standard deviations.
 - The bounds are rounded outward: down for the lower bound and up for the upper bound. This prevents an otherwise valid decimal range from becoming narrower when printed as integers.
-- To follow gradual changes, statistics use at most the 15 most recently accepted values.
+- Statistics use all accepted values collected during the current run.
 - A value whose distance from the latest accepted value is at least 1,000 is treated as an abrupt outlier and is not added to the statistical history. The program still prints a prediction after it.
+- When the current value is accepted, the final printed interval is expanded if necessary to include that value.
 
 This balances two goals from the exercise: covering the next value and keeping ranges narrow enough to score well.
 
